@@ -1,4 +1,4 @@
-import ProductCard from "@/app/components/ProductCard";
+import ProductCard from "../../../../helpers/components/ProductCard";
 import {
   CategoryWithProductsResponseSchema,
   Product,
