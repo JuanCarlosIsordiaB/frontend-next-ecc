@@ -1,6 +1,7 @@
-import { formatCurrency } from "..";
-import { Product } from "../schemas/schema";
+import { formatCurrency } from "../..";
+import { Product } from "../../schemas/schema";
 import Image from "next/image";
+import AddProductButton from "./addProductButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -11,6 +12,7 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={`Product: ${product.image}`}
           width={400}
           height={600}
+          priority
         />
         <div className="p-3 space-y-2">
           <h3 className="text-xl font-bold text-gray-600">{product.name}</h3>
@@ -20,12 +22,8 @@ export default function ProductCard({ product }: { product: Product }) {
           </p>
         </div>
       </div>
-      <button
-        type="button"
-        className=" bg-indigo-500 py-3 px-9  rounded text-white w-full    hover:bg-indigo-600 transition-all"
-      >
-        Buy
-      </button>
+
+      <AddProductButton product={product} /> 
     </div>
   );
 }
