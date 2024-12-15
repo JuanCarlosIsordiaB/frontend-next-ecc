@@ -1,6 +1,7 @@
 "use client";
 import { useStore } from "../../store/store";
 import Amount from "./Amount";
+import CouponForm from "./CouponForm";
 import ShoppingCartItem from "./ShoppingCartItem";
 
 export default function ShoppingCart() {
@@ -23,6 +24,7 @@ export default function ShoppingCart() {
             <Amount label="Total to Pay" amount={total} />
           </dl>
 
+          <CouponForm />
         </>
 
       ) : (
