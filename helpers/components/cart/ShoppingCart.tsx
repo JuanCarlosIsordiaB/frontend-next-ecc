@@ -23,8 +23,8 @@ export default function ShoppingCart() {
           <dl>
             <Amount label="Total to Pay" amount={total} />
           </dl>
-
           <CouponForm />
+          
         </>
 
       ) : (

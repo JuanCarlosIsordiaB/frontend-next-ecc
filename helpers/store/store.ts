@@ -1,6 +1,11 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { Coupon, CouponResponseSchema, Product, ShoppingCart } from "../schemas/schema";
+import {
+  Coupon,
+  CouponResponseSchema,
+  Product,
+  ShoppingCart,
+} from "../schemas/schema";
 
 interface Store {
   total: number;
@@ -11,6 +16,7 @@ interface Store {
   removeFromCart: (id: Product["id"]) => void;
   calculateTotal: () => void;
   applyCoupon: (couponName: string) => Promise<void>;
+  applyDiscount: () => void;
 }
 
 export const useStore = create<Store>()(
@@ -69,6 +75,9 @@ export const useStore = create<Store>()(
         0
       );
       set(() => ({ total }));
+      if(get().coupon.percentage) {
+        get().applyDiscount();
+      }
     },
     applyCoupon: async (couponName: string) => {
       const req = await fetch("/coupons/api", {
@@ -80,7 +89,13 @@ export const useStore = create<Store>()(
       const json = await req.json();
       const coupon = CouponResponseSchema.parse(json);
       set(() => ({ coupon }));
-
+      if(coupon.percentage) {
+        get().applyDiscount();
+      }
+    },
+    applyDiscount: () => {
+      const total = get().total - get().total * (get().coupon.percentage / 100);
+      set(() => ({ total }));
     },
   }))
 );

@@ -26,12 +26,12 @@ export default function CouponForm() {
               <input 
                   type="text"
                   className="p-2 bg-gray-200 border-gray-300 w-full"
-                  placeholder="Ingresa un cupón"
+                  placeholder="Insert a copoun code"
                   name="coupon_name"
               />
               <input 
                   type="submit"
-                  className="p-3 bg-green-400 font-bold hover:cursor-pointer"
+                  className="p-3 bg-indigo-400 font-bold hover:cursor-pointer hover:bg-indigo-500 transition-all text-white"
                   value='Redeem'
               />
             </form>
