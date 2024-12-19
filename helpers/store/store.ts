@@ -59,7 +59,7 @@ export const useStore = create<Store>()(
 
       get().calculateTotal();
     },
-    updateQuantity: (id, quantity) => {
+    updateQuantity: (id, quantitys) => {
       const contents = get().contents.map((item) =>
         item.productId === id ? { ...item, quantity } : item
       );
